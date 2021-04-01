@@ -46,6 +46,17 @@ public:
 };
 
 // O(n) time | O(1) space
+/* The idea behind this method is that the correct position of the minimum element in the unsorted subarray helps
+to determine the required left boundary. Similarly, the correct position of the maximum element in the unsorted subarray
+helps to determine the required right boundary.Thus, firstly we need to determine when the correctly sorted array goes wrong.
+We keep a track of this by observing rising slope starting from the beginning of the array. Whenever the slope falls, we know
+that the unsorted array has surely started. Thus, now we determine the minimum element found till the end of the array numsnums, given by minmin.
+Similarly, we scan the array numsnums in the reverse order and when the slope becomes rising instead of falling, we start looking
+for the maximum element till we reach the beginning of the array, given by maxmax.Then, we traverse over numsnums and determine the correct
+position of minmin and maxmax by comparing these elements with the other array elements. e.g. To determine the correct position of minmin,
+\we know the initial portion of numsnums is already sorted. Thus, we need to find the first element which is just larger than minmin.
+Similarly, for maxmax's position, we need to find the first element which is just smaller than maxmax searching in numsnums backwards.
+*/
 int findUnsortedSubarray(vector<int>& nums) {
        int mini = INT_MAX, maxi = INT_MIN;
        bool flag = false;
